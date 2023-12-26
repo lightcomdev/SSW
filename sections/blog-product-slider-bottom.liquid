@@ -1,0 +1,92 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<section class="page-width sellerBestSeller">
+  <div class="sellerWrap">
+  <div class="sellerHeading">
+     <h3>{{ section.settings.sellertitle }}</h3>
+  </div>
+ 
+ 
+
+  <div class="slider slide-show slide-show-bottom">
+       {% for product in collections[section.settings.collectionName].products %}
+          <div class="img-wish">
+               <a href="{{ product.url }}"><img src="{{ product.featured_image | img_url: '150x130' }}" /></a>
+               <p><a href="{{ product.url }}">{{ product.title | escape }} | <span>{{ product.price | money }} </span></a></p>
+              
+          </div>
+    {% endfor %}
+   
+  
+    </div>
+</div>
+</section>
+<style>
+  
+</style>
+<script>
+$('.slide-show-bottom').slick({
+        dots: false,
+        infinite: true,
+        slidesToShow: 4,
+        autoplay:false,
+        prevArrow:"<button type='button' class='slick-prev pull-left'><img src='https://cdn.shopify.com/s/files/1/0822/0206/7260/files/left-arrow.png?v=1697798389'></button>",
+        nextArrow:"<button type='button' class='slick-next pull-right'><img src='https://cdn.shopify.com/s/files/1/0822/0206/7260/files/right-arrow.png?v=1697798457'></button>",
+        responsive: [        
+        {
+            breakpoint: 769,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+            }
+        },
+          {
+            breakpoint: 420,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            }
+        }
+  ]
+});
+    </script>
+     <style>
+   .common_blog_slider .slider{
+     margin-top:40px;
+   }
+   .sellerBestSeller {
+    margin-bottom: 20px;
+  }  
+
+  .slide-show-bottom p {text-transform: uppercase;}    
+ </style> 
+{% schema %}
+  {
+    "name": "Blog Product Slider Last",
+    "class": "index-section index-section-home-custom common_blog_slider blog_slider_bottom",
+     "settings": [
+
+      {
+        "type": "text",
+        "id": "sellertitle",
+        "label": "Heading",
+        "default": "Best Selling Product"
+      },
+       {
+           "type": "collection",
+           "id": "collectionName",
+           "label": "Select Collection"
+         }
+        
+    ],
+    
+    "presets": [
+      {
+        "name": "Blog Product Slider Last",
+        "category": "text"
+      }
+    ]
+  }
+{% endschema %}

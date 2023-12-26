@@ -1,0 +1,58 @@
+<section class="home-page-blog">
+  <div class="page-width">
+    <div class="home-page-blog-inner">
+          <span>{{ section.settings.subtitle }}</span>
+          <h2>{{ section.settings.title }}</h2>
+          <p>{{ section.settings.description }}</p>
+          <a href="{{ section.settings.redamore }}">Read More</a>
+    </div>
+  </div>
+</section>
+
+<!-- <div class="yotpo-widget-instance" data-yotpo-instance-id="492732" data-yotpo-product-id="{{product.id}}" data-yotpo-cart-product-id="{{item.product.id}}" data-yotpo-section-id="{{template.name}}"></div>
+<div class="yotpo bottomLine"
+data-product-id="">
+</div> -->
+{% schema %}
+  {
+    "name": "Home Single Blog",
+    "class": "index-section index-section-home-custom",
+    "settings": [
+
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Featured collection Home"
+      },
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subheading"
+      },
+      {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "url",
+        "id": "redamore",
+        "label": "URL"
+      }
+        
+    ],
+    "presets": [
+      {
+        "name": "Home Single Blog",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

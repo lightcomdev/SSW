@@ -1,0 +1,85 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<section class="page-width sellerBestSeller">
+  <div class="sellerWrap">
+  <div class="sellerHeading">
+     <h3>{{ section.settings.sellertitle }}</h3>
+  </div>
+ 
+ 
+
+  <div class="slider slide-show">
+    {% assign all_products = collections[section.settings.collectionName].products %}
+     {% assign sorted_products = all_products | sort: 'orders' | reverse %}
+       {% for product in sorted_products %}
+          <div class="img-wish">
+               <a href="{{ product.url }}" ><img src="{{ product.featured_image | img_url: '150x130' }}" /></a>
+             <a href="{{ product.url }}" style="text-decoration:none;"> <p>{{ product.title | escape }} / {{ product.price | money }}</p></a>
+              <!-- <span>{{ product.price | money }} </span> -->
+          </div>
+    {% endfor %}
+   
+  
+    </div>
+</div>
+</section>
+<style>
+  
+</style>
+<script>
+$('.slide-show').slick({
+        dots: false,
+        infinite: true,
+        slidesToShow: 4,
+        autoplay:false,
+   prevArrow:"<button type='button' class='slick-prev pull-left'><img src='https://cdn.shopify.com/s/files/1/0822/0206/7260/files/left-arrow.png?v=1697798389'></button>",
+        nextArrow:"<button type='button' class='slick-next pull-right'><img src='https://cdn.shopify.com/s/files/1/0822/0206/7260/files/right-arrow.png?v=1697798457'></button>",        
+        
+        responsive: [        
+        {
+            breakpoint: 769,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+            }
+        },
+           {
+            breakpoint: 420,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            }
+        }
+  ]
+});
+    </script>
+{% schema %}
+  {
+    "name": "Home Product Best Seller",
+    "class": "index-section index-section-home-custom",
+     "settings": [
+
+      {
+        "type": "text",
+        "id": "sellertitle",
+        "label": "Heading",
+        "default": "Best Selling Chemicals"
+      },
+       {
+           "type": "collection",
+           "id": "collectionName",
+           "label": "Select Collection"
+         }
+        
+    ],
+    
+    "presets": [
+      {
+        "name": "Home Product Best Seller",
+        "category": "text"
+      }
+    ]
+  }
+{% endschema %}

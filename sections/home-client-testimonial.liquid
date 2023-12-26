@@ -1,0 +1,92 @@
+
+<section class="page-width clientTestimonail">
+  <div class="sellerWrap clientTestimonailWrap">
+  <div class="sellerHeading">
+     <h3>Our Client Reviews</h3>
+  </div>
+  <div class="slider client-slide-show">
+   {% for block in section.blocks %}  
+         <div class="clientReviews">     
+         {% if block.settings.testimonialText %}
+          <p>{{ block.settings.testimonialText }}</p>
+          {% endif %}
+      {% if block.settings.testimonialName %}
+          <h3>{{ block.settings.testimonialName }}</h3>
+            {% endif %}
+     {% if block.settings.testimonialProfession %}
+          <span>{{ block.settings.testimonialProfession }}</span>
+            {% endif %}
+        </div>  
+    {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+$('.client-slide-show').slick({
+        dots: true,
+        infinite: true,
+        slidesToShow: 3,
+        autoplay:true,
+        responsive: [        
+        {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            }
+        }
+  ]
+});
+    </script>
+{% schema %}
+  {
+    "name": "Home Client Testimonial",
+    "class": "index-section index-section-home-custom",
+    "settings": [
+
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      }
+        
+    ],
+    "blocks": [
+     {
+       "name": "Testimonial",
+       "type": "slide",
+       "settings": [
+         {
+           "type": "text",
+           "id": "testimonialText",
+           "label": "Testimonial Description"
+         },
+         {
+           "type": "text",
+           "id": "testimonialName",
+           "label": "Testimonial Name"
+         },
+         {
+           "type": "text",
+           "id": "testimonialProfession",
+           "label": "Testimonial Profession"
+         }
+       ]
+     }
+  ],
+    "presets": [
+      {
+        "name": "Home Client Testimonial",
+        "category": "text"
+      }
+    ]
+  }
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
